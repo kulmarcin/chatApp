@@ -2,4 +2,4 @@
 
 <p>Application made with React and Node.js with socket.io</p>
 
-<a href="">LIVE DEMO</a>
+<a href="https://chatapp-56257.firebaseapp.com">LIVE DEMO</a>
