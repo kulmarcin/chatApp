@@ -21,42 +21,62 @@
   h2 {
     text-align: center;
     color: $beige;
+    text-shadow: -5px 5px 5px black;
+    letter-spacing: 5px;
   }
 }
 
-.Messages {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  margin: 3rem 1rem 0 1rem;
+.Container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 3rem 0 3rem;
+}
+
+.UserMessages {
+  padding: 1rem 1rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 60rem;
   overflow: scroll;
   background-color: rgba(0, 0, 0, 0.3);
   height: 30rem;
   color: $beige;
-  box-shadow: 5px 5px 10px black;
+  text-align: right;
+  box-shadow: -5px 5px 10px black;
 
   .Left {
-      align-self: flex-start;
+    align-self: flex-start;
   }
+
+  .User {
+    color: $gray;
+    text-align: right;
+  }
+}
+
+.ContainerTyping {
+  display: flex;
+  margin: 3rem 3rem 0 3rem;
 }
 
 .Typing {
   display: flex;
   justify-content: space-between;
   height: 6rem;
+  width: 25rem;
   color: white;
-  margin: 3rem 1rem 0 1rem;
   background-color: rgba(0, 0, 0, 0.3);
   border: none;
   outline: none;
-  box-shadow: 5px 5px 10px black;
+  box-shadow: -5px 5px 10px black;
 
   button {
     height: 6rem;
     width: 4rem;
     border: none;
     color: $beige;
-    background-color: $lightgray;
+    background-color: $gray;
     cursor: pointer;
 
     &:active {
@@ -70,5 +90,23 @@
     color: $beige;
     border: none;
     outline: none;
+    resize: none;
+  }
+}
+
+.SystemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+  margin-left: 2rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 20rem;
+  height: 6rem;
+  box-shadow: -5px 5px 10px black;
+  overflow: scroll;
+
+  .SystemMessage {
+    color: $lightgray;
+    margin-bottom: 0.3rem;
   }
 }
