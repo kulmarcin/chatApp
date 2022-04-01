@@ -1,0 +1,74 @@
+@import '../App/globals';
+
+.Chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  h1,
+  h2 {
+    text-align: center;
+    color: $beige;
+  }
+}
+
+.Messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  margin: 3rem 1rem 0 1rem;
+  overflow: scroll;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 30rem;
+  color: $beige;
+  box-shadow: 5px 5px 10px black;
+
+  .Left {
+      align-self: flex-start;
+  }
+}
+
+.Typing {
+  display: flex;
+  justify-content: space-between;
+  height: 6rem;
+  color: white;
+  margin: 3rem 1rem 0 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 10px black;
+
+  button {
+    height: 6rem;
+    width: 4rem;
+    border: none;
+    color: $beige;
+    background-color: $lightgray;
+    cursor: pointer;
+
+    &:active {
+      transform: translate(-1px, 2px);
+    }
+  }
+
+  textarea {
+    width: 95%;
+    background-color: transparent;
+    color: $beige;
+    border: none;
+    outline: none;
+  }
+}
