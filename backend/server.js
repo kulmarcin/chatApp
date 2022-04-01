@@ -1,5 +1,4 @@
 const express = require('express');
-const socket = require('socket.io');
 const cors = require('cors');
 const { getCurrentUser, userDisconnect, joinUser } = require('./user');
 
@@ -15,31 +14,35 @@ const server = app.listen(
   console.log(`Server is running on the port: ${port} `)
 );
 
-const io = socket(server);
+const socket = require('socket.io')(server, {
+  cors: {
+    origin: process.env.URI || 'http://localhost:3000',
+    methods: ['GET', 'POST']
+  }
+});
+const io = socket;
 
 io.on('connection', socket => {
-
   socket.on('joinRoom', ({ username, roomName }) => {
     //create user
     const user = joinUser(socket.id, username, roomName);
     socket.join(user.room);
 
     //Welcome message to user
-    socket.emit('message', {
+    socket.emit('welcome', {
       userId: user.id,
       username: user.username,
-      text: `Welcome ${user.username}`
+      text: `Welcome ${user.username} in the room '${roomName}'!`
     });
 
     //others see that user joined the chat
-    socket.broadcast.to(user.room).emit('message', {
+    socket.to(user.room).emit('joining', {
       userId: user.id,
       username: user.username,
       text: `${user.username} has joined the chat`
     });
   });
 
-  
   socket.on('chat', text => {
     //get user object
     const user = getCurrentUser(socket.id);
@@ -51,16 +54,15 @@ io.on('connection', socket => {
     });
   });
 
-  
   socket.on('disconnect', () => {
     const user = userDisconnect(socket.id);
 
     if (user) {
-        //message to all that user has disconnected
-      io.to(user.room).emit('message', {
+      //message to all that user has disconnected
+      io.to(user.room).emit('leave', {
         userId: user.id,
         username: user.username,
-        text: `${user.username} has left the room`
+        text: `${user.username} has left the chat`
       });
     }
   });
